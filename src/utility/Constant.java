@@ -14,4 +14,6 @@ public class Constant {
     public static final String MALE = "Male";
     public static final String FEMALE = "Female";
     public static final String OTHER = "Other";
+    public static final String ZODIAC = "Zodiac";
+    public static final String ZODIAC_PHOLD = "Enter Zodiac";
 }

@@ -71,6 +71,8 @@ public class Actuator extends Application {
         int insetRdBtn[] = {2, 9, 1, 1};
         int insetRdBtn2[] = {3, 9, 1, 1};
         int insetRdBtn3[] = {4, 9, 1, 1};
+        int insetZodiac[] = {1, 10, 1, 1};
+        int insetZodiacFld[] = {3, 10, 1, 1};
         int insetsBtn[] = {3, 11, 1, 1};
 
         gridPane.getChildren().clear();
@@ -94,6 +96,9 @@ public class Actuator extends Application {
                 HPos.CENTER, Constant.TWENTY_MARGIN, FontWeight.BOLD, tg);
         ob.addRadioButton(gridPane, Constant.OTHER, "Arial", 15, insetRdBtn3,
                 HPos.CENTER, Constant.TWENTY_MARGIN, FontWeight.EXTRA_BOLD, tg);
+        ob.addText(gridPane, Constant.ZODIAC, "Arial", 15, insetZodiac,
+                HPos.CENTER, Constant.TWENTY_MARGIN, FontWeight.LIGHT);
+        ob.addTextField(gridPane, Constant.ZODIAC_PHOLD, "Arial", 12, insetZodiacFld, Constant.ZERO_PADDING, 40);
         ob.addButton(gridPane, Constant.SUB_BTN_TXT, "Arial", 15, insetsBtn,
                 HPos.CENTER, Constant.TWENTY_MARGIN, FontWeight.LIGHT);
     }
