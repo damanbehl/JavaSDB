@@ -1,9 +1,7 @@
 package utility;
 
 import javafx.geometry.*;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import controltemplate.graphicity;
 import javafx.scene.text.Font;
@@ -46,7 +44,7 @@ public class GraphicalUtility implements graphicity {
         Label genericLabel = new Label(labelTxt);
         genericLabel.setFont(Font.font(labelFont, fontWtObj, fontSize));
         gridPane.add(genericLabel, indices[0], indices[1], indices[2], indices[3]);
-        gridPane.setHalignment(genericLabel, agn.CENTER);
+        gridPane.setHalignment(genericLabel, agn);
         gridPane.setMargin(genericLabel, new Insets(margin[0], margin[1], margin[2], margin[3]));
 
     }
@@ -56,7 +54,7 @@ public class GraphicalUtility implements graphicity {
 //        Text genericText = new Text(textCon);
 //        genericText.setFont(Font.font(labelFont, fontWtObj, fontSize));
 //        gridPane.add(genericText, indices[0], indices[1], indices[2], indices[3]);
-//        gridPane.setHalignment(genericText, agn.CENTER);
+//        gridPane.setHalignment(genericText, agn);
 //        gridPane.setMargin(genericText, new Insets(margin[0], margin[1], margin[2], margin[3]));
 //        return gridPane;
 //    }
@@ -68,7 +66,7 @@ public class GraphicalUtility implements graphicity {
         genericText.setTextAlignment(TextAlignment.CENTER);
         genericText.setFont(Font.font(labelFont, fontWtObj, fontSize));
         gridPane.add(genericText, indices[0], indices[1], indices[2], indices[3]);
-        gridPane.setHalignment(genericText, agn.CENTER);
+        gridPane.setHalignment(genericText, agn);
         gridPane.setMargin(genericText, new Insets(margin[0], margin[1], margin[2], margin[3]));
 //        return gridPane;
     }
@@ -77,8 +75,8 @@ public class GraphicalUtility implements graphicity {
             , HPos agn, int margin[], FontWeight fontWtObj){
         Button genericButton = new Button(btnTxt);
         genericButton.setFont(Font.font(labelFont, fontWtObj, fontSize));
-        gridPane.add(genericButton, 1,10,3,1);
-        gridPane.setHalignment(genericButton, HPos.CENTER);
+        gridPane.add(genericButton, indices[0], indices[1], indices[2], indices[3]);
+        gridPane.setHalignment(genericButton, agn);
         gridPane.setMargin(genericButton, new Insets(0, 0,0,0));
         genericButton.setOnAction((ActionEvent) -> {
             showAlert(Alert.AlertType.INFORMATION, gridPane.getScene().getWindow(), "Information","Maximum number of workshops\n" +
@@ -94,7 +92,27 @@ public class GraphicalUtility implements graphicity {
         alert.show();
 
     }
+
+    public void addTextField(GridPane gd, String text, String fontName, int fontSize, int indices[], int margin[], int prefWidth){
+        TextField retObj = new TextField();
+        retObj.setPromptText(text);
+        retObj.setFocusTraversable(false);
+        retObj.setFont(Font.font(fontName, FontWeight.EXTRA_LIGHT, fontSize));
+        retObj.setPrefWidth(prefWidth);
+        gd.add(retObj, indices[0], indices[1], indices[2], indices[3]);
+        gd.setMargin(retObj, new Insets(margin[0], margin[1], margin[2], margin[3]));
+    }
 //    public GridPane addBackgroundMusic(GridPane gridPane){
 //        return gridPane;
 //    }
+
+    public void addRadioButton(GridPane gridPane, String btnTxt, String labelFont, int fontSize, int indices[]
+            , HPos agn, int margin[], FontWeight fontWtObj, ToggleGroup tg){
+        RadioButton genericRadioButton = new RadioButton(btnTxt);
+        genericRadioButton.setFont(Font.font(labelFont, fontWtObj, fontSize));
+        genericRadioButton.setToggleGroup(tg);
+        gridPane.add(genericRadioButton, indices[0], indices[1], indices[2], indices[3]);
+        gridPane.setHalignment(genericRadioButton, agn);
+        gridPane.setMargin(genericRadioButton, new Insets(margin[0], margin[1], margin[2], margin[3]));
+    }
 }
