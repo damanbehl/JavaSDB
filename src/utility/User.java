@@ -16,16 +16,20 @@ public class User {
         this.moveCounter = 0;
         this.gameOver = false;
     }
-    public int getMoveCounter(){
+
+    public int getMoveCounter() {
         return this.moveCounter;
     }
-    public void incrementMoveCounter(){
+
+    public void incrementMoveCounter() {
         this.moveCounter = this.moveCounter + 1;
     }
-    public void setGameOver(boolean b){
+
+    public void setGameOver(boolean b) {
         this.gameOver = b;
     }
-    public boolean getGameOver(){
+
+    public boolean getGameOver() {
         return this.gameOver;
     }
 }

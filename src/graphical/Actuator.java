@@ -1,14 +1,20 @@
 package graphical;
 
 import javafx.application.Application;
-import javafx.geometry.*;
-import javafx.scene.*;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
-import javafx.scene.text.*;
-import javafx.stage.*;
-import utility.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
+import utility.Constant;
+import utility.Gameplay;
+import utility.GraphicalUtility;
+import utility.User;
 
 public class Actuator extends Application {
     private static String name;
@@ -26,7 +32,7 @@ public class Actuator extends Application {
         wrapperLauncher(primaryStage);
     }
 
-    public void wrapperLauncher(Stage primaryStage){
+    public void wrapperLauncher(Stage primaryStage) {
         primaryStage.setTitle("Ice and Fire");
         GraphicalUtility ob = new GraphicalUtility();
         GridPane initialGrid = initializeGrid(ob);
@@ -37,6 +43,7 @@ public class Actuator extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
+
     public GridPane initializeGrid(GraphicalUtility ob) {
         GridPane initialGrid = ob.createGridpane(Pos.TOP_CENTER, Constant.ZERO_PADDING, Constant.MAIN_SGRID_HVGAP);
         return initialGrid;
@@ -131,8 +138,6 @@ public class Actuator extends Application {
             Gameplay.startJourney(gridPane, ob, u1, false, false, primaryStage);
         }
     }
-
-
 
 
 }

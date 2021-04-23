@@ -3,10 +3,11 @@ package obstacle;
 import controltemplate.Obstacle;
 
 public class Dragon implements Obstacle {
-    public int breatheFire(){
+    public int breatheFire() {
         return 0;
     }
-    public void die(){
+
+    public void die() {
 
     }
 

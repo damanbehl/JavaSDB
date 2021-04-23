@@ -1,9 +1,11 @@
 package utility;
 
-import javafx.geometry.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
 import controltemplate.Graphicity;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;

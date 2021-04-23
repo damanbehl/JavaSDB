@@ -1,7 +1,6 @@
 package utility;
 
 import graphical.Actuator;
-import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
