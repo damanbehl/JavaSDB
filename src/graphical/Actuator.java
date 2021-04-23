@@ -117,7 +117,7 @@ public class Actuator extends Application {
             setClassAttrib(gridPane, name, zodiac, tg, ob, primaryStage);
         });
     }
-
+    // storing user info
     public static void setClassAttrib(GridPane gridPane, TextField name, TextField zodiac, ToggleGroup tg, GraphicalUtility ob, Stage primaryStage) {
         RadioButton selected = (RadioButton) tg.getSelectedToggle();
         if (selected == null || name == null || zodiac == null) {
