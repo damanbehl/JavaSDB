@@ -7,6 +7,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Window;
+import utility.GraphicalUtility;
+import utility.User;
 
 public interface Graphicity {
     /**
@@ -29,4 +31,5 @@ public interface Graphicity {
 
     RadioButton addRadioButton(GridPane gridPane, String btnTxt, String labelFont, int fontSize, int indices[]
             , HPos agn, int margin[], FontWeight fontWtObj, ToggleGroup tg);
+    void addUserInfoToPane(GridPane gridPane, User u1, GraphicalUtility ob);
 }

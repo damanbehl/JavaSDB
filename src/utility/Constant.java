@@ -21,4 +21,13 @@ public class Constant {
     public static final  int[] CHOI_BTN_TWO = {6, 16, 1, 1};
     public static final  int[] CHOI_BTN_THREE = {6, 17, 1, 1};
     public static final int SWORD_DAMAGE = 10;
+    public static final int HP_METER[] =  {10, 1, 1, 1};
+    public static final int NAME_INDICE[] =  {0, 1, 1, 1};
+    public static final int MOVE_COUNTER[] =  {1, 1, 1, 1};
+    public static final String POOR_PLAY = "You made a couple of bad decisions";
+    public static final String G_OVER = "Game Over";
+    public static final String THE_END = "THE END";
+    public static final int []INTRO_INSETS = {2, 3, 2, 2};
+    public static final int[]CENTER_PROMPT = {2, 6, 1, 1};
+    public static final int[]CENTER_BTN = {2, 8, 1, 1};
 }

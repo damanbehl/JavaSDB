@@ -23,17 +23,20 @@ public class Actuator extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        wrapperLauncher(primaryStage);
+    }
+
+    public void wrapperLauncher(Stage primaryStage){
         primaryStage.setTitle("Ice and Fire");
         GraphicalUtility ob = new GraphicalUtility();
         GridPane initialGrid = initializeGrid(ob);
 //        initialGrid.setGridLinesVisible(true);
         addContent(initialGrid);
-        Scene scene = cueFirstScene(initialGrid, ob);
+        Scene scene = cueFirstScene(initialGrid, ob, primaryStage);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
     }
-
     public GridPane initializeGrid(GraphicalUtility ob) {
         GridPane initialGrid = ob.createGridpane(Pos.TOP_CENTER, Constant.ZERO_PADDING, Constant.MAIN_SGRID_HVGAP);
         return initialGrid;
@@ -47,7 +50,7 @@ public class Actuator extends Application {
         gridPane.setMargin(headerLabel, new Insets(0, 0, 0, 0));
     }
 
-    public Scene cueFirstScene(GridPane initialGrid, GraphicalUtility ob) {
+    public Scene cueFirstScene(GridPane initialGrid, GraphicalUtility ob, Stage primaryStage) {
         Scene scene = new Scene(initialGrid, 800, 500);
         BackgroundImage myBI = new BackgroundImage(new Image("file:src/img/lighter.jpeg", 800, 500, false, true),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
@@ -59,12 +62,12 @@ public class Actuator extends Application {
         initialGrid.setHalignment(bb, HPos.CENTER);
         initialGrid.setMargin(bb, new Insets(0, 0, 0, 0));
         bb.setOnAction((ActionEvent) -> {
-            initiateGame(initialGrid, ob);
+            initiateGame(initialGrid, ob, primaryStage);
         });
         return scene;
     }
 
-    public void initiateGame(GridPane gridPane, GraphicalUtility ob) {
+    public void initiateGame(GridPane gridPane, GraphicalUtility ob, Stage primaryStage) {
         int insets[] = {2, 4, 2, 2};
         int innsetsTxt[] = {2, 6, 2, 2};
         int insetTxtNom[] = {3, 8, 1, 1};
@@ -104,11 +107,11 @@ public class Actuator extends Application {
         Button submit = ob.addButton(gridPane, Constant.SUB_BTN_TXT, "Arial", 15, insetsBtn,
                 HPos.CENTER, Constant.TWENTY_MARGIN, FontWeight.LIGHT);
         submit.setOnAction((ActionEvent) -> {
-            setClassAttrib(gridPane, name, zodiac, tg, ob);
+            setClassAttrib(gridPane, name, zodiac, tg, ob, primaryStage);
         });
     }
 
-    public static void setClassAttrib(GridPane gridPane, TextField name, TextField zodiac, ToggleGroup tg, GraphicalUtility ob) {
+    public static void setClassAttrib(GridPane gridPane, TextField name, TextField zodiac, ToggleGroup tg, GraphicalUtility ob, Stage primaryStage) {
         RadioButton selected = (RadioButton) tg.getSelectedToggle();
         if (selected == null || name == null || zodiac == null) {
             if (selected == null) {
@@ -125,7 +128,7 @@ public class Actuator extends Application {
             Actuator.zodiac = zodiac.getText();
             Actuator.gender = selected.getText();
             System.out.println("class attributes set");
-            Gameplay.startJourney(gridPane, ob, u1);
+            Gameplay.startJourney(gridPane, ob, u1, false, false, primaryStage);
         }
     }
 

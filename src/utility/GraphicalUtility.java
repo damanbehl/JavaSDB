@@ -61,14 +61,13 @@ public class GraphicalUtility implements Graphicity {
 //    }
 
     /**
-     *
-     * @param gridPane: gridpane on which we want to add the label
-     * @param textCon:  text content
+     * @param gridPane:  gridpane on which we want to add the label
+     * @param textCon:   text content
      * @param labelFont: text font
-     * @param fontSize: font size
-     * @param indices: gridpane indices
-     * @param agn: alignment obj
-     * @param margin: margin values
+     * @param fontSize:  font size
+     * @param indices:   gridpane indices
+     * @param agn:       alignment obj
+     * @param margin:    margin values
      * @param fontWtObj:
      * @return returns created Text component
      */
@@ -83,15 +82,15 @@ public class GraphicalUtility implements Graphicity {
         gridPane.setMargin(genericText, new Insets(margin[0], margin[1], margin[2], margin[3]));
         return genericText;
     }
+
     /**
-     *
-     * @param gridPane: gridpane on which we want to add the label
-     * @param btnTxt:  text content
+     * @param gridPane:  gridpane on which we want to add the label
+     * @param btnTxt:    text content
      * @param labelFont: text font
-     * @param fontSize: font size
-     * @param indices: gridpane indices
-     * @param agn: alignment obj
-     * @param margin: margin values
+     * @param fontSize:  font size
+     * @param indices:   gridpane indices
+     * @param agn:       alignment obj
+     * @param margin:    margin values
      * @param fontWtObj:
      * @return returns created button component
      */
@@ -107,11 +106,10 @@ public class GraphicalUtility implements Graphicity {
     }
 
     /**
-     *
      * @param alertType: Alert class object for error, info or none
-     * @param owner: Owner of the window in which we want to apply
-     * @param title: title of the
-     * @param message: message that we want to display
+     * @param owner:     Owner of the window in which we want to apply
+     * @param title:     title of the
+     * @param message:   message that we want to display
      */
     @Override
     public void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
@@ -124,13 +122,12 @@ public class GraphicalUtility implements Graphicity {
     }
 
     /**
-     *
      * @param gd
      * @param text
      * @param fontName
      * @param fontSize: font size of textfield
-     * @param indices: grid indices of TF
-     * @param margin: margins around TF
+     * @param indices:  grid indices of TF
+     * @param margin:   margins around TF
      * @param prefWidth : preferred width of textfield
      * @return created textField object
      */
@@ -159,5 +156,15 @@ public class GraphicalUtility implements Graphicity {
         gridPane.setHalignment(genericRadioButton, agn);
         gridPane.setMargin(genericRadioButton, new Insets(margin[0], margin[1], margin[2], margin[3]));
         return genericRadioButton;
+    }
+
+    @Override
+    public void addUserInfoToPane(GridPane gridPane, User u1, GraphicalUtility ob) {
+        ob.addHeaderLabel(gridPane, "HP:" + u1.HP, "Arial", 12, Constant.HP_METER,
+                HPos.RIGHT, Constant.ZERO_PADDING, FontWeight.BOLD);
+        ob.addHeaderLabel(gridPane, "NAME:" + u1.name, "Arial", 12, Constant.NAME_INDICE,
+                HPos.LEFT, Constant.ZERO_PADDING, FontWeight.BOLD);
+        ob.addHeaderLabel(gridPane, "Move no:" + u1.getMoveCounter(), "Arial", 12, Constant.MOVE_COUNTER,
+                HPos.LEFT, Constant.ZERO_PADDING, FontWeight.BOLD);
     }
 }
