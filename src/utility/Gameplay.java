@@ -1,6 +1,7 @@
 package utility;
 
 import graphical.Actuator;
+import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -173,7 +174,7 @@ public class Gameplay {
             u1.incrementMoveCounter();
             ww.attackPlayer(u1);
             if (!ww.isWWAlive()) {
-                goToWinterfell(gridPane);
+                goToWinterfell(gridPane, ob, u1, false, false, primaryStage, "You killed the white walker,\n but was it really the last of them");
             } else {
                 if (u1.getGameOver()) {
                     System.out.println("Endzone");
@@ -185,7 +186,7 @@ public class Gameplay {
         });
         c3.setOnAction((ActionEvent) -> {
             u1.incrementMoveCounter();
-            goToWinterfell(gridPane);
+            goToWinterfell(gridPane, ob, u1, false, false, primaryStage, "you retreated from the white walker, a wise choice");
         });
     }
 
@@ -215,7 +216,7 @@ public class Gameplay {
             ww.breatheFire(u1);
             if (!ww.isDrogonAlive()) {
                 u1.setDragonGlass();
-                goToWinterfell(gridPane);
+                goToWinterfell(gridPane, ob, u1, false, false, primaryStage, "You killed the dragon and discovered a pile of dragon glass");
             } else {
                 if (u1.getGameOver()) {
                     System.out.println("Endzone");
@@ -229,13 +230,41 @@ public class Gameplay {
         });
         c2.setOnAction((ActionEvent) -> {
             u1.incrementMoveCounter();
-            goToWinterfell(gridPane);
-            //goto winterfell
+            goToWinterfell(gridPane, ob, u1, false, false, primaryStage, "You retreated from the dragon, a wise choice");
         });
     }
 
-    public static void goToWinterfell(GridPane gridPane) {
-        System.out.println("came to winterfell");
+    public static void goToWinterfell(GridPane gridPane, GraphicalUtility ob, User u1, boolean isRepeat, boolean gameOver, Stage primaryStage, String history) {
         gridPane.getChildren().clear();
+        GenericObstacle go = new GenericObstacle();
+        ob.addUserInfoToPane(gridPane, u1, ob);
+        String message = "";
+        if(isRepeat == false) {
+            message = "You have reached Winterfell, previously " + history + "/n unfortunately, Winterfell your home is under attack\n what do you want to do next";
+        }
+        else{
+            message = "You cannot defeat this army by your own";
+        }
+        ob.addText(gridPane, message, "Arial", 15, Constant.CENTER_PROMPT, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        Button c1 = ob.addButton(gridPane, "ATTACK", "Arial", 13, Constant.CHOI_BTN_ONE, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        Button c2 = ob.addButton(gridPane, "REGROUP AT THE WALL", "Arial", 13, Constant.CHOI_BTN_TWO, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        c1.setOnAction((ActionEvent) -> {
+            u1.incrementMoveCounter();
+            go.reduceHp(Constant.ARMY_DAMAGE, u1);
+            if (u1.getGameOver()) {
+                System.out.println("Endzone");
+                endingSequence(gridPane, Constant.POOR_PLAY, u1, ob, primaryStage);
+            } else {
+                goToWinterfell(gridPane, ob, u1, true, false, primaryStage, "");
+            }
+        });
+        c2.setOnAction((ActionEvent) -> {
+            regroupAtWall(gridPane, ob, u1, true, false, primaryStage);
+        });
     }
+    public static void regroupAtWall(GridPane gridPane, GraphicalUtility ob, User u1, boolean isRepeat, boolean gameOver, Stage primaryStage){
+        gridPane.getChildren().clear();
+        ob.addUserInfoToPane(gridPane, u1, ob);
+    }
+
 }

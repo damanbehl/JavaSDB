@@ -45,4 +45,5 @@ public class Constant {
     public static final String WW_ATTACKED = "You have been attacked by a white walker";
     public static final String DRAGON_ATTACKED = "You have been attacked by the dragon";
     public static final String WHITE_WALKER_KILLEDU = "You were killed by the white walker\n You need to have dragonglass or sword of the king to kill the white walker";
+    public static final int ARMY_DAMAGE = 5;
 }
