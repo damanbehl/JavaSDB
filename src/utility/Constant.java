@@ -19,9 +19,9 @@ public class Constant {
     public static final String ZODIAC = "Zodiac";
     public static final String ZODIAC_PHOLD = "Enter Zodiac";
     public static final int INITIAL_HP = 100;
-    public static final int[] CHOI_BTN_ONE = {6, 15, 2, 1};
-    public static final int[] CHOI_BTN_TWO = {6, 16, 2, 1};
-    public static final int[] CHOI_BTN_THREE = {6, 17, 1, 1};
+    public static final int[] CHOI_BTN_ONE = {2, 15, 2, 1};
+    public static final int[] CHOI_BTN_TWO = {2, 16, 2, 1};
+    public static final int[] CHOI_BTN_THREE = {2, 17, 2, 1};
     public static final int SWORD_DAMAGE = 10;
     public static final int HP_METER[] = {10, 1, 1, 1};
     public static final int NAME_INDICE[] = {0, 1, 1, 1};
@@ -37,4 +37,12 @@ public class Constant {
     public static final int[] REPORT_MOVES = {3, 8, 1, 1};
     public static final int[] CENTER_BTN = {2, 12, 1, 1};
     public static final String DRAGON_KILLEDU = "You were killed by the legendary dragon drogon\n You need to have more HP than the dragon";
+    public static final String REACHED_WALL = "You reached the wall\n The commander of the night's watch has given you two choices given below";
+    public static final String HAVE_ELIXIR = "You have the elixir of life noe\nup north there have been rumors\nNorth of you is a white walker\n down south is the dragon";
+    public static final String HAVE_SWORD = "You have the sword of the kings\nup north there have been rumors\nNorth of you is a white walker\n down south is the dragon";
+    public static final int WHITE_WALKER_DAMAGE = 25;
+    public static final int DAGGER_REVERSE_DAMAGE = 10;
+    public static final String WW_ATTACKED = "You have been attacked by a white walker";
+    public static final String DRAGON_ATTACKED = "You have been attacked by the dragon";
+    public static final String WHITE_WALKER_KILLEDU = "You were killed by the white walker\n You need to have dragonglass or sword of the king to kill the white walker";
 }

@@ -8,6 +8,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import obstacle.Dragon;
 import obstacle.GenericObstacle;
+import obstacle.WhiteWalker;
 
 public class Gameplay {
     public static void startJourney(GridPane gridPane, GraphicalUtility ob, User u1, boolean isRepeat, boolean gameOver, Stage primaryStage) {
@@ -95,8 +96,146 @@ public class Gameplay {
             a1.wrapperLauncher(primaryStage);
         });
     }
-    public static void reachedWall(GridPane gridPane, GraphicalUtility ob, User u1, Stage primaryStage){
+
+    public static void reachedWall(GridPane gridPane, GraphicalUtility ob, User u1, Stage primaryStage) {
         gridPane.getChildren().clear();
         ob.addUserInfoToPane(gridPane, u1, ob);
+        ob.addText(gridPane, Constant.REACHED_WALL, "Arial", 15, Constant.CENTER_PROMPT, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        Button c1 = ob.addButton(gridPane, "DRINK ELIXIR", "Arial", 13, Constant.CHOI_BTN_ONE, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        Button c2 = ob.addButton(gridPane, "TAKE SWORD OF THE KINGS", "Arial", 13, Constant.CHOI_BTN_TWO, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        c1.setOnAction((ActionEvent) -> {
+            u1.incrementMoveCounter();
+            u1.drinkElixir();
+            swordElixirTimeLine(gridPane, ob, u1, primaryStage);
+        });
+        c2.setOnAction((ActionEvent) -> {
+            u1.incrementMoveCounter();
+            u1.takeSwordOfKings();
+            swordElixirTimeLine(gridPane, ob, u1, primaryStage);
+        });
+    }
+
+    public static void swordElixirTimeLine(GridPane gridPane, GraphicalUtility ob, User u1, Stage primaryStage) {
+        gridPane.getChildren().clear();
+        ob.addUserInfoToPane(gridPane, u1, ob);
+        String message = "";
+        if (u1.doIHaveElixir()) {
+            message = Constant.HAVE_ELIXIR;
+        } else {
+            message = Constant.HAVE_SWORD;
+        }
+        ob.addText(gridPane, message, "Arial", 15, Constant.CENTER_PROMPT, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        Button c1 = ob.addButton(gridPane, "GO TOWARDS WHITE WALKER", "Arial", 13, Constant.CHOI_BTN_ONE, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        Button c2 = ob.addButton(gridPane, "GO TOWARDS DRAGON", "Arial", 13, Constant.CHOI_BTN_TWO, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        c1.setOnAction((ActionEvent) -> {
+            u1.incrementMoveCounter();
+            encounterWW(gridPane, ob, u1, false, false, primaryStage);
+        });
+        c2.setOnAction((ActionEvent) -> {
+            u1.incrementMoveCounter();
+            encounterDragon(gridPane, ob, u1, false, false, primaryStage);
+        });
+    }
+
+    public static void encounterWW(GridPane gridPane, GraphicalUtility ob, User u1, boolean isRepeat, boolean gameOver, Stage primaryStage) {
+        WhiteWalker ww = new WhiteWalker();
+        boolean canIDefeatWW = false;
+        gridPane.getChildren().clear();
+        ob.addUserInfoToPane(gridPane, u1, ob);
+        String entityPossesed = "";
+        if (u1.doIHaveElixir()) {
+            entityPossesed = "Elixir of life";
+        } else {
+            entityPossesed = "You have the sword of the kings";
+            canIDefeatWW = true;
+        }
+        String toSend = "";
+        if (isRepeat == false) {
+            toSend = Constant.WW_ATTACKED + ", you have the " + entityPossesed;
+        } else {
+            toSend = "The white walker is too strong, you have to use the weapon that kills the white walker\n you need either the sword of the kings or dragon glass";
+        }
+        ob.addText(gridPane, toSend, "Arial", 15, Constant.CENTER_PROMPT, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        Button c1 = ob.addButton(gridPane, "Attack with dagger", "Arial", 13, Constant.CHOI_BTN_ONE, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        Button c2 = ob.addButton(gridPane, "Attack with sword", "Arial", 13, Constant.CHOI_BTN_TWO, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        Button c3 = ob.addButton(gridPane, "Retreat", "Arial", 13, Constant.CHOI_BTN_THREE, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        c1.setOnAction((ActionEvent) -> {
+            u1.incrementMoveCounter();
+            ww.attackPlayerDagger(u1);
+            if (u1.getGameOver()) {
+                System.out.println("Endzone");
+                endingSequence(gridPane, Constant.WW_ATTACKED, u1, ob, primaryStage);
+            } else {
+                encounterWW(gridPane, ob, u1, true, false, primaryStage);
+            }
+        });
+        c2.setOnAction((ActionEvent) -> {
+            u1.incrementMoveCounter();
+            ww.attackPlayer(u1);
+            if (!ww.isWWAlive()) {
+                goToWinterfell(gridPane);
+            } else {
+                if (u1.getGameOver()) {
+                    System.out.println("Endzone");
+                    endingSequence(gridPane, Constant.WHITE_WALKER_KILLEDU, u1, ob, primaryStage);
+                } else {
+                    encounterWW(gridPane, ob, u1, true, false, primaryStage);
+                }
+            }
+        });
+        c3.setOnAction((ActionEvent) -> {
+            u1.incrementMoveCounter();
+            goToWinterfell(gridPane);
+        });
+    }
+
+    public static void encounterDragon(GridPane gridPane, GraphicalUtility ob, User u1, boolean isRepeat, boolean gameOver, Stage primaryStage) {
+        Dragon ww = new Dragon();
+        boolean canIDefeatDrogon = false;
+        gridPane.getChildren().clear();
+        ob.addUserInfoToPane(gridPane, u1, ob);
+        String entityPossesed = "";
+        if (u1.doIHaveElixir()) {
+            entityPossesed = "Elixir of life";
+            canIDefeatDrogon = true;
+        } else {
+            entityPossesed = "You have the sword of the kings";
+        }
+        String toSend = "";
+        if (isRepeat == false) {
+            toSend = Constant.DRAGON_ATTACKED + ", you have the " + entityPossesed;
+        } else {
+            toSend = "The Dragon is too strong, you\n you need the elixir of life or an army to defeat the dragon ";
+        }
+        ob.addText(gridPane, toSend, "Arial", 15, Constant.CENTER_PROMPT, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        Button c1 = ob.addButton(gridPane, "Attack", "Arial", 13, Constant.CHOI_BTN_ONE, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        Button c2 = ob.addButton(gridPane, "Retreat", "Arial", 13, Constant.CHOI_BTN_THREE, HPos.CENTER, Constant.ZERO_PADDING, FontWeight.BLACK);
+        c1.setOnAction((ActionEvent) -> {
+            u1.incrementMoveCounter();
+            ww.breatheFire(u1);
+            if (!ww.isDrogonAlive()) {
+                u1.setDragonGlass();
+                goToWinterfell(gridPane);
+            } else {
+                if (u1.getGameOver()) {
+                    System.out.println("Endzone");
+                    endingSequence(gridPane, Constant.DRAGON_KILLEDU, u1, ob, primaryStage);
+                } else {
+                    encounterDragon(gridPane, ob, u1, true, false, primaryStage);
+                }
+            }
+
+
+        });
+        c2.setOnAction((ActionEvent) -> {
+            u1.incrementMoveCounter();
+            goToWinterfell(gridPane);
+            //goto winterfell
+        });
+    }
+
+    public static void goToWinterfell(GridPane gridPane) {
+        System.out.println("came to winterfell");
+        gridPane.getChildren().clear();
     }
 }

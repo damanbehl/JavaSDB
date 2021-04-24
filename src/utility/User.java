@@ -7,14 +7,20 @@ public class User {
     public int HP;
     private int moveCounter;
     private boolean gameOver;
+    private boolean swordOfKings;
+    private boolean elixirOfLife;
+    private boolean dragonGlass;
 
     public User(String name, String zodiac, String gender, int HP) {
         this.name = name;
         this.gender = gender;
         this.zodiac = zodiac;
         this.HP = HP;
-        this.moveCounter = 0;
+        this.moveCounter = 1;
         this.gameOver = false;
+        this.elixirOfLife = false;
+        this.swordOfKings = false;
+        this.dragonGlass = false;
     }
 
     public int getMoveCounter() {
@@ -31,5 +37,20 @@ public class User {
 
     public boolean getGameOver() {
         return this.gameOver;
+    }
+    public void drinkElixir(){
+        this.elixirOfLife = true;
+    }
+    public void takeSwordOfKings(){
+        this.swordOfKings = true;
+    }
+    public boolean doIHaveElixir(){
+        return elixirOfLife;
+    }
+    public boolean doIHvSwordOfKings(){
+        return swordOfKings;
+    }
+    public void setDragonGlass(){
+        this.dragonGlass = true;
     }
 }
