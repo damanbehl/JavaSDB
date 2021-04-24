@@ -10,6 +10,8 @@ public class User {
     private boolean swordOfKings;
     private boolean elixirOfLife;
     private boolean dragonGlass;
+    private boolean dornishAlly;
+    private boolean wildlingAlly;
 
     public User(String name, String zodiac, String gender, int HP) {
         this.name = name;
@@ -21,6 +23,8 @@ public class User {
         this.elixirOfLife = false;
         this.swordOfKings = false;
         this.dragonGlass = false;
+        this.dornishAlly = false;
+        this.wildlingAlly = true;
     }
 
     public int getMoveCounter() {
@@ -38,19 +42,44 @@ public class User {
     public boolean getGameOver() {
         return this.gameOver;
     }
-    public void drinkElixir(){
+
+    public void drinkElixir() {
         this.elixirOfLife = true;
     }
-    public void takeSwordOfKings(){
+
+    public void takeSwordOfKings() {
         this.swordOfKings = true;
     }
-    public boolean doIHaveElixir(){
+
+    public boolean doIHaveElixir() {
         return elixirOfLife;
     }
-    public boolean doIHvSwordOfKings(){
+
+    public boolean doIHvSwordOfKings() {
         return swordOfKings;
     }
-    public void setDragonGlass(){
+
+    public void setDragonGlass() {
         this.dragonGlass = true;
+    }
+
+    public boolean getDragonGlass() {
+        return this.dragonGlass;
+    }
+
+    public void setdornishAlly() {
+        this.dornishAlly = true;
+    }
+
+    public boolean getdornishAlly() {
+        return this.dornishAlly;
+    }
+
+    public void setwildlingAlly() {
+        this.wildlingAlly = true;
+    }
+
+    public boolean getwildlingAlly() {
+        return this.wildlingAlly;
     }
 }

@@ -46,4 +46,6 @@ public class Constant {
     public static final String DRAGON_ATTACKED = "You have been attacked by the dragon";
     public static final String WHITE_WALKER_KILLEDU = "You were killed by the white walker\n You need to have dragonglass or sword of the king to kill the white walker";
     public static final int ARMY_DAMAGE = 5;
+    public static final String CONFLICT_BREAKOUT = "You have reached the wall,\n A conflict has broken in between the dornish and the wildlings\n " +
+            "the dornish men are good in combat, \n the wildlings are accustomed with white walkers and how to defeat them\n The dornish men know how to defeat a dragon\nwhat do you want to do?";
 }
